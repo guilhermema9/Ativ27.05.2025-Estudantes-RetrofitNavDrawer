@@ -5,8 +5,8 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_estudante"
-            android:icon="@drawable/ic_menu_camera" android:title="@string/menu_estudante" />
+            android:id="@+id/nav_lista_estudantes"
+            android:icon="@drawable/ic_menu_camera" android:title="@string/menu_lista_estudantes" />
         <item
             android:id="@+id/nav_cadastra_estudante"
             android:icon="@drawable/ic_menu_gallery" android:title="@string/menu_cadastra_estudante" />

@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/nav_estudante"
-        android:name="com.example.ativ27052025_estudantes_retrofitnavdrawer.ui.estudante.EstudanteFragment"
-        android:label="@string/menu_estudante"
-        tools:layout="@layout/fragment_estudante" />
+        android:name="com.example.ativ27052025_estudantes_retrofitnavdrawer.ui.listaEstudantes.ListaEstudantesFragment"
+        android:label="@string/menu_lista_estudantes"
+        tools:layout="@layout/fragment_lista_estudantes" />
 
     <fragment
         android:id="@+id/nav_cadastra_estudante"

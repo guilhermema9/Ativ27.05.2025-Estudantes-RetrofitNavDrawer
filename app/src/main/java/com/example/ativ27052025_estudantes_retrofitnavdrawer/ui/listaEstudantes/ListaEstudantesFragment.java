@@ -1,4 +1,4 @@
-package com.example.ativ27052025_estudantes_retrofitnavdrawer.ui.estudante;
+package com.example.ativ27052025_estudantes_retrofitnavdrawer.ui.listaEstudantes;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,21 +10,21 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.ativ27052025_estudantes_retrofitnavdrawer.databinding.FragmentEstudanteBinding;
+import com.example.ativ27052025_estudantes_retrofitnavdrawer.databinding.FragmentListaEstudantesBinding;
 
-public class EstudanteFragment extends Fragment {
+public class ListaEstudantesFragment extends Fragment {
 
-    private FragmentEstudanteBinding binding;
+    private FragmentListaEstudantesBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        EstudanteViewModel estudanteViewModel = new ViewModelProvider(this).get(EstudanteViewModel.class);
+        ListaEstudantesViewModel listaEstudantesViewModel = new ViewModelProvider(this).get(ListaEstudantesViewModel.class);
 
-        binding = FragmentEstudanteBinding.inflate(inflater, container, false);
+        binding = FragmentListaEstudantesBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textSlideshow;
-        estudanteViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        listaEstudantesViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

@@ -1,16 +1,16 @@
-package com.example.ativ27052025_estudantes_retrofitnavdrawer.ui.estudante;
+package com.example.ativ27052025_estudantes_retrofitnavdrawer.ui.listaEstudantes;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class EstudanteViewModel extends ViewModel {
+public class ListaEstudantesViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public EstudanteViewModel() {
+    public ListaEstudantesViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("Listar Estudante");
+        mText.setValue("Lista de Todos os Estudantes");
     }
 
     public LiveData<String> getText() {
