@@ -4,16 +4,22 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.ativ27052025_estudantes_retrofitnavdrawer.model.Estudante;
+import com.example.ativ27052025_estudantes_retrofitnavdrawer.repository.EstudanteRepository;
+
+import java.util.List;
+
 public class ListaEstudantesViewModel extends ViewModel {
 
-    private final MutableLiveData<String> mText;
+    private LiveData<List<Estudante>> estudantesListLiveData;
+    private EstudanteRepository estudanteRepository;
 
     public ListaEstudantesViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("Lista de Todos os Estudantes");
+        estudanteRepository = new EstudanteRepository();
+        estudantesListLiveData = estudanteRepository.buscarTodosEstudantes();
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public LiveData<List<Estudante>> getEstudantesListLiveData() {
+        return estudantesListLiveData;
     }
 }

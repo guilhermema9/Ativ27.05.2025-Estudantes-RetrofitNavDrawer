@@ -11,8 +11,8 @@ import retrofit2.http.Path;
 public interface EstudanteService {
 
     @GET("./")
-    Call<List<Estudante>> buscarEstudantes();
+    Call<List<Estudante>> buscarTodosEstudantes();
 
     @GET("{id}")
-    Call<Estudante> buscaEstudante(@Path("id") int id);
+    Call<Estudante> buscarEstudantePorId(@Path("id") int id);
 }
