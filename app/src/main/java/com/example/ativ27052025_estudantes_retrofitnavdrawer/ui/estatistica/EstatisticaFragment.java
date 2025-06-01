@@ -1,4 +1,4 @@
-package com.example.ativ27052025_estudantes_retrofitnavdrawer.ui.home;
+package com.example.ativ27052025_estudantes_retrofitnavdrawer.ui.estatistica;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,22 +10,21 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.ativ27052025_estudantes_retrofitnavdrawer.databinding.FragmentHomeBinding;
+import com.example.ativ27052025_estudantes_retrofitnavdrawer.databinding.FragmentEstatisticaBinding;
 
-public class HomeFragment extends Fragment {
+public class EstatisticaFragment extends Fragment {
 
-    private FragmentHomeBinding binding;
+    private FragmentEstatisticaBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        HomeViewModel homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+        EstatisticaViewModel estatisticaViewModel = new ViewModelProvider(this).get(EstatisticaViewModel.class);
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding = FragmentEstatisticaBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        estatisticaViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

@@ -1,16 +1,16 @@
-package com.example.ativ27052025_estudantes_retrofitnavdrawer.ui.home;
+package com.example.ativ27052025_estudantes_retrofitnavdrawer.ui.cadastraEstudante;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class HomeViewModel extends ViewModel {
+public class CadastraEstudanteViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public HomeViewModel() {
+    public CadastraEstudanteViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        mText.setValue("Cadastra Estudante");
     }
 
     public LiveData<String> getText() {

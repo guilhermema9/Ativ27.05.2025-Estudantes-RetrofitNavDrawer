@@ -1,16 +1,16 @@
-package com.example.ativ27052025_estudantes_retrofitnavdrawer.ui.slideshow;
+package com.example.ativ27052025_estudantes_retrofitnavdrawer.ui.estudante;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class SlideshowViewModel extends ViewModel {
+public class EstudanteViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public SlideshowViewModel() {
+    public EstudanteViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is slideshow fragment");
+        mText.setValue("Listar Estudante");
     }
 
     public LiveData<String> getText() {

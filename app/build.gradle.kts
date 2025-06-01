@@ -35,7 +35,9 @@ android {
 }
 
 dependencies {
-
+    implementation("com.google.code.gson:gson:2.13.1")
+    implementation("com.squareup.retrofit2:retrofit:3.0.0")
+    implementation("com.squareup.retrofit2:converter-gson:3.0.0")
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.constraintlayout)
