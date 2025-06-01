@@ -23,8 +23,8 @@ public class ListaEstudantesFragment extends Fragment {
         binding = FragmentListaEstudantesBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textSlideshow;
-        listaEstudantesViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        //final TextView textView = binding.textSlideshow;
+        //listaEstudantesViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

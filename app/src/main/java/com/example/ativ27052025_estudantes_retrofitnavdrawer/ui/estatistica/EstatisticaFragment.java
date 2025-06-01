@@ -23,8 +23,8 @@ public class EstatisticaFragment extends Fragment {
         binding = FragmentEstatisticaBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
-        estatisticaViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        //final TextView textView = binding.textHome;
+        //estatisticaViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
