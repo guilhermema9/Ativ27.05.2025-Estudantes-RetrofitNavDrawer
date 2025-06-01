@@ -1,22 +1,214 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.estatistica.EstatisticaFragment">
 
-    <TextView
-        android:id="@+id/text_home"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:orientation="vertical"
+        android:padding="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingVertical="4dp">
+
+            <TextView
+                android:textColor="@color/darkgrey"
+                android:textSize="16sp"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="16dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="Média Geral da Turma:"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewMediaGeral"
+                android:textColor="@color/darkgrey"
+                android:textSize="16sp"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="16dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="4dp"
+            android:background="@color/outline" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingVertical="4dp">
+
+            <TextView
+                android:textColor="@color/darkgrey"
+                android:textSize="16sp"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="16dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="Aluno com maior nota:"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewAlunoMaiorNota"
+                android:textColor="@color/darkgrey"
+                android:textSize="16sp"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="16dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="4dp"
+            android:background="@color/outline" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingVertical="4dp">
+
+            <TextView
+                android:textColor="@color/darkgrey"
+                android:textSize="16sp"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="16dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="Aluno com menor nota:"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewAlunoMenorNota"
+                android:textColor="@color/darkgrey"
+                android:textSize="16sp"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="16dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="4dp"
+            android:background="@color/outline" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingVertical="4dp">
+
+            <TextView
+                android:textColor="@color/darkgrey"
+                android:textSize="16sp"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="16dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="Média de idade da turma:"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewMediaIdadeTurma"
+                android:textColor="@color/darkgrey"
+                android:textSize="16sp"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="16dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="4dp"
+            android:background="@color/outline" />
+
+        <TextView
+            android:textColor="@color/darkgrey"
+            android:textSize="16sp"
+            android:paddingVertical="12dp"
+            android:paddingHorizontal="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="4dp"
+            android:text="Alunos Aprovados:"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="80dp"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewAlunosAprovados"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginBottom="8dp"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="4dp"
+                android:nestedScrollingEnabled="true"
+                android:paddingHorizontal="8dp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="4dp"
+            android:background="@color/outline" />
+
+        <TextView
+            android:textColor="@color/darkgrey"
+            android:textSize="16sp"
+            android:paddingVertical="12dp"
+            android:paddingHorizontal="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="4dp"
+            android:text="Alunos Reprovados:"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="80dp"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewAlunosReprovados"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginBottom="8dp"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="4dp"
+                android:nestedScrollingEnabled="true"
+                android:paddingHorizontal="8dp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
