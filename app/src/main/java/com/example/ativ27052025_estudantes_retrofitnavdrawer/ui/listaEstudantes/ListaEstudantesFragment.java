@@ -42,6 +42,7 @@ public class ListaEstudantesFragment extends Fragment {
 
         recyclerViewNomes = binding.recyclerViewNome;
 
+        viewModel = new ListaEstudantesViewModel();
         viewModel.getEstudantesListLiveData().observe(getViewLifecycleOwner(),estudantes ->{
             if (estudantes != null && !estudantes.isEmpty()){
                 List<String> listaEstudantes = new ArrayList<>();
@@ -59,6 +60,7 @@ public class ListaEstudantesFragment extends Fragment {
                         startActivity(intent);
                     }
                 });*/
+                recyclerViewNomes.setAdapter(adapter);
             } else {
                 Log.e("ListaEstudantesFragment", "Lista de estudantes nula");
             }

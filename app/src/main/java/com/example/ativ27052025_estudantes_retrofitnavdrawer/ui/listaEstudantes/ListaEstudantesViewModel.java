@@ -11,8 +11,8 @@ import java.util.List;
 
 public class ListaEstudantesViewModel extends ViewModel {
 
-    private LiveData<List<Estudante>> estudantesListLiveData;
     private EstudanteRepository estudanteRepository;
+    private LiveData<List<Estudante>> estudantesListLiveData;
 
     public ListaEstudantesViewModel() {
         estudanteRepository = new EstudanteRepository();

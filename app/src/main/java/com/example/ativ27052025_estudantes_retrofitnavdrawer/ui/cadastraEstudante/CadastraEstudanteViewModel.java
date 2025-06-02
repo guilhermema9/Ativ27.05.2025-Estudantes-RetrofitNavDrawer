@@ -4,16 +4,18 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.ativ27052025_estudantes_retrofitnavdrawer.model.Estudante;
+import com.example.ativ27052025_estudantes_retrofitnavdrawer.repository.EstudanteRepository;
+
 public class CadastraEstudanteViewModel extends ViewModel {
 
-    private final MutableLiveData<String> mText;
+    private EstudanteRepository estudanteRepository;
 
     public CadastraEstudanteViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("Cadastra Estudante");
+        estudanteRepository = new EstudanteRepository();
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public LiveData<Boolean> cadastraNovoEstudante(Estudante estudante){
+        return estudanteRepository.cadastrarEstudante(estudante);
     }
 }
