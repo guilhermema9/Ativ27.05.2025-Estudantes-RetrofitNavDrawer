@@ -1,5 +1,6 @@
 package com.example.ativ27052025_estudantes_retrofitnavdrawer.ui.listaEstudantes;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,11 +27,9 @@ import java.util.List;
 public class ListaEstudantesFragment extends Fragment {
 
     private FragmentListaEstudantesBinding binding;
-    private ArrayAdapter<String> adapterEstudantes;
     private EstudantesAdapter adapter;
     private RecyclerView recyclerViewNomes;
     private ListaEstudantesViewModel viewModel;
-
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

@@ -25,5 +25,4 @@ public class DadosEstudanteViewModel extends ViewModel {
     public LiveData<Boolean> deletaEstudante(Estudante estudante) {
         return estudanteRepository.deletarEstudante(estudante);
     }
-
 }

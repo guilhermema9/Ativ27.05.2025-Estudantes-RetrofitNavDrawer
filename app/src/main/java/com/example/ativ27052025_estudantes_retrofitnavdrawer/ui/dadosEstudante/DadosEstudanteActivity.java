@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -76,16 +77,20 @@ public class DadosEstudanteActivity extends AppCompatActivity {
         });
 
         buttonCadastraNota.setOnClickListener(v ->{
-            Float nota = Float.valueOf(editTextNota.getText().toString());
-            estudante.notas.add(nota);
-            viewModel.atualizaEstudante(estudante).observe(DadosEstudanteActivity.this, respostaHttp ->{
-                if (respostaHttp){
-                    Toast.makeText(DadosEstudanteActivity.this, "Nota cadastradada com sucesso", Toast.LENGTH_SHORT).show();
-                    finish();
-                } else {
-                    Toast.makeText(DadosEstudanteActivity.this, "Erro ao cadastrar nota", Toast.LENGTH_SHORT).show();
-                }
-            });
+            if (!editTextNota.getText().isEmpty()){
+                Float nota = Float.valueOf(editTextNota.getText().toString());
+                estudante.notas.add(nota);
+                viewModel.atualizaEstudante(estudante).observe(DadosEstudanteActivity.this, respostaHttp ->{
+                    if (respostaHttp){
+                        Toast.makeText(DadosEstudanteActivity.this, "Nota cadastradada com sucesso", Toast.LENGTH_SHORT).show();
+                        finish();
+                    } else {
+                        Toast.makeText(DadosEstudanteActivity.this, "Erro ao cadastrar nota", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } else {
+                Toast.makeText(DadosEstudanteActivity.this, "Digite uma nota", Toast.LENGTH_SHORT).show();
+            }
         });
 
         buttonCadastraPresenca.setOnClickListener(v -> {
