@@ -51,7 +51,7 @@ public class CadastraEstudanteFragment extends Fragment {
                 viewModel.cadastraNovoEstudante(estudante).observe(getViewLifecycleOwner(), respostaHttp ->{
                     if (respostaHttp){
                         Toast.makeText(getContext(), "Estudande cadastrado com sucesso", Toast.LENGTH_SHORT).show();
-                        // finish(); Finalizar fragment para retornar a "home"
+                        requireActivity().onBackPressed();
                     } else {
                         Toast.makeText(getContext(), "Erro ao cadastrar estudante", Toast.LENGTH_SHORT).show();
                     }

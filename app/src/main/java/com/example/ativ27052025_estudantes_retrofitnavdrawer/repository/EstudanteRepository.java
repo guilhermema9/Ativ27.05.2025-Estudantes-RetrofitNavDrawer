@@ -130,25 +130,32 @@ public class EstudanteRepository {
         return resultadoHttp;
     }
 
-    public LiveData<Estudante> atualizarEstudante(int id, Estudante estudante){
-        MutableLiveData<Estudante> dados = new MutableLiveData<>();
+    public LiveData<Boolean> atualizarEstudante(Estudante estudante){
+        MutableLiveData<Boolean> resultadoHttp = new MutableLiveData<>();
+        int id = estudante.getId();
 
         estudanteService.atualizarEstudante(id,estudante).enqueue(new Callback<Estudante>() {
             @Override
             public void onResponse(Call<Estudante> call, Response<Estudante> response) {
-                dados.setValue(response.body());
+                if (response.isSuccessful() && response.body() !=null ){
+                    resultadoHttp.setValue(true);
+                } else {
+                    resultadoHttp.setValue(false);
+                }
             }
 
             @Override
             public void onFailure(Call<Estudante> call, Throwable t) {
                 Log.e("EstudanteRepository", "Falha requisição atualizar: " + t.getMessage());
+                resultadoHttp.setValue(false);
             }
         });
-        return dados;
+        return resultadoHttp;
     }
 
-    public LiveData<Boolean> deletarEstudante(int id){
+    public LiveData<Boolean> deletarEstudante(Estudante estudante){
         MutableLiveData<Boolean> dados = new MutableLiveData<>();
+        int id = estudante.getId();
 
         estudanteService.deletarEstudante(id).enqueue(new Callback<Void>() {
             @Override
