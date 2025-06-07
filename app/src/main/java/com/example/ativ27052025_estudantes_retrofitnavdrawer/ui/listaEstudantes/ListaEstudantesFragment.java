@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -40,6 +41,12 @@ public class ListaEstudantesFragment extends Fragment {
 
         recyclerViewNomes = binding.recyclerViewNome;
 
+        return root;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         viewModel = new ListaEstudantesViewModel();
         viewModel.getEstudantesListLiveData().observe(getViewLifecycleOwner(),estudantes ->{
             if (estudantes != null && !estudantes.isEmpty()){
@@ -63,13 +70,6 @@ public class ListaEstudantesFragment extends Fragment {
                 Log.e("ListaEstudantesFragment", "Lista de estudantes nula");
             }
         });
-        return root;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        viewModel.getEstudantesListLiveData();
     }
 
     @Override
