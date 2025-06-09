@@ -1,29 +1,29 @@
 package com.example.ativ27052025_estudantes_retrofitnavdrawer.ui.dadosEstudante;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.example.ativ27052025_estudantes_retrofitnavdrawer.R;
-import com.example.ativ27052025_estudantes_retrofitnavdrawer.databinding.ActivityDadosEstudanteBinding;
-import com.example.ativ27052025_estudantes_retrofitnavdrawer.databinding.FragmentCadastraEstudanteBinding;
+import com.example.ativ27052025_estudantes_retrofitnavdrawer.databinding.FragmentDadosEstudanteBinding;
 import com.example.ativ27052025_estudantes_retrofitnavdrawer.model.Estudante;
 import com.example.ativ27052025_estudantes_retrofitnavdrawer.service.CalculosEstudanteService;
 
-public class DadosEstudanteActivity extends AppCompatActivity {
+public class DadosEstudanteFragment extends Fragment {
 
     private Estudante estudante;
     private DadosEstudanteViewModel viewModel;
@@ -31,21 +31,20 @@ public class DadosEstudanteActivity extends AppCompatActivity {
     private Button buttonCadastraNota, buttonCadastraPresenca, buttonDeletarEstudante;
     private EditText editTextNota;
     private RadioGroup radioGroupPresenca;
-    private ActivityDadosEstudanteBinding binding;
+    private FragmentDadosEstudanteBinding binding;
+    private int idEstudante;
+
+    public static DadosEstudanteFragment newInstance() {
+        return new DadosEstudanteFragment();
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_dados_estudante);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        viewModel = new ViewModelProvider(this).get(DadosEstudanteViewModel.class);
 
-        binding = ActivityDadosEstudanteBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        binding = FragmentDadosEstudanteBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
 
         textViewNome = binding.textViewNome;
         textViewIdade = binding.textViewIdade;
@@ -58,10 +57,14 @@ public class DadosEstudanteActivity extends AppCompatActivity {
         radioGroupPresenca = binding.radioGroupPresenca;
         buttonDeletarEstudante = binding.buttonDeletarEstudante;
 
-        int idEstudante = getIntent().getIntExtra("id",0);
+        Log.i("DadosEstudanteFragment", "ARGUMENTS: " + getArguments()); // AQUI ESTA RETORNANDO NULL
+        if (getArguments() != null){
+            idEstudante = getArguments().getInt("id");
+            Log.i("DadosEstudanteFragment", "ID ESTUDANTE: " + idEstudante);
+        }
 
         viewModel = new ViewModelProvider(this).get(DadosEstudanteViewModel.class);
-        viewModel.getEstudanteById(idEstudante).observe(this, e -> {
+        viewModel.getEstudanteById(idEstudante).observe(getViewLifecycleOwner(), e -> {
             estudante = e;
             textViewNome.setText(e.getNome());
             textViewIdade.setText(String.valueOf(e.getIdade()));
@@ -70,9 +73,9 @@ public class DadosEstudanteActivity extends AppCompatActivity {
             String situacao = CalculosEstudanteService.calculaSituacaoFinal(e);
             textViewSituacao.setText(situacao);
             if (situacao.equals("Aprovado")){
-                textViewSituacao.setTextColor(ContextCompat.getColor(this,R.color.green));
+                textViewSituacao.setTextColor(ContextCompat.getColor(getContext(),R.color.green));
             } else {
-                textViewSituacao.setTextColor(ContextCompat.getColor(this,R.color.red));
+                textViewSituacao.setTextColor(ContextCompat.getColor(getContext(),R.color.red));
             }
         });
 
@@ -80,16 +83,16 @@ public class DadosEstudanteActivity extends AppCompatActivity {
             if (!editTextNota.getText().isEmpty()){
                 Float nota = Float.valueOf(editTextNota.getText().toString());
                 estudante.notas.add(nota);
-                viewModel.atualizaEstudante(estudante).observe(DadosEstudanteActivity.this, respostaHttp ->{
+                viewModel.atualizaEstudante(estudante).observe(getViewLifecycleOwner(), respostaHttp ->{
                     if (respostaHttp){
-                        Toast.makeText(DadosEstudanteActivity.this, "Nota cadastradada com sucesso", Toast.LENGTH_SHORT).show();
-                        finish();
+                        Navigation.findNavController(v).popBackStack();
+                        Toast.makeText(getContext(), "Nota cadastradada com sucesso", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(DadosEstudanteActivity.this, "Erro ao cadastrar nota", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Erro ao cadastrar nota", Toast.LENGTH_SHORT).show();
                     }
                 });
             } else {
-                Toast.makeText(DadosEstudanteActivity.this, "Digite uma nota", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Digite uma nota", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -102,27 +105,34 @@ public class DadosEstudanteActivity extends AppCompatActivity {
                 presenca = false;
                 estudante.presenca.add(presenca);
             } else {
-                Toast.makeText(DadosEstudanteActivity.this, "Selecione uma opção de presença", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Selecione uma opção de presença", Toast.LENGTH_SHORT).show();
             }
-            viewModel.atualizaEstudante(estudante).observe(DadosEstudanteActivity.this, respostaHttp ->{
+            viewModel.atualizaEstudante(estudante).observe(getViewLifecycleOwner(), respostaHttp ->{
                 if (respostaHttp){
-                    Toast.makeText(DadosEstudanteActivity.this, "Presença cadastradada com sucesso", Toast.LENGTH_SHORT).show();
-                    finish();
+                    Navigation.findNavController(v).popBackStack();
+                    Toast.makeText(getContext(), "Presença cadastradada com sucesso", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(DadosEstudanteActivity.this, "Erro ao cadastrar presença", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Erro ao cadastrar presença", Toast.LENGTH_SHORT).show();
                 }
             });
         });
 
         buttonDeletarEstudante.setOnClickListener(v -> {
-            viewModel.deletaEstudante(estudante).observe(DadosEstudanteActivity.this, respostaHttp -> {
+            viewModel.deletaEstudante(estudante).observe(getViewLifecycleOwner(), respostaHttp -> {
                 if (respostaHttp){
-                    Toast.makeText(DadosEstudanteActivity.this, "Estudante deletado com sucesso", Toast.LENGTH_SHORT).show();
-                    finish();
+                    Navigation.findNavController(v).popBackStack();
+                    Toast.makeText(getContext(), "Estudante deletado com sucesso", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(DadosEstudanteActivity.this, "Erro ao deletar estudante", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Erro ao deletar estudante", Toast.LENGTH_SHORT).show();
                 }
             });
         });
+        return root;
+        //return inflater.inflate(R.layout.fragment_dados_estudante, container, false);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
     }
 }

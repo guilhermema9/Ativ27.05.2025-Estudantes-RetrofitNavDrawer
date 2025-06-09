@@ -9,7 +9,11 @@
         android:id="@+id/nav_estudante"
         android:name="com.example.ativ27052025_estudantes_retrofitnavdrawer.ui.listaEstudantes.ListaEstudantesFragment"
         android:label="@string/menu_lista_estudantes"
-        tools:layout="@layout/fragment_lista_estudantes" />
+        tools:layout="@layout/fragment_lista_estudantes" >
+        <action
+            android:id="@+id/action_nav_estudante_to_nav_dados_estudants"
+            app:destination="@id/nav_dados_estudants" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_cadastra_estudante"
@@ -22,4 +26,10 @@
         android:name="com.example.ativ27052025_estudantes_retrofitnavdrawer.ui.estatistica.EstatisticaFragment"
         android:label="@string/menu_estatistica"
         tools:layout="@layout/fragment_estatistica" />
+
+    <fragment
+        android:id="@+id/nav_dados_estudants"
+        android:name="com.example.ativ27052025_estudantes_retrofitnavdrawer.ui.dadosEstudante.DadosEstudanteFragment"
+        android:label="Dados Estudante"
+        tools:layout="@layout/fragment_dados_estudante" />
 </navigation>
