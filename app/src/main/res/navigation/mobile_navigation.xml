@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_estudante">
+    app:startDestination="@+id/nav_lista_estudantes">
 
     <fragment
-        android:id="@+id/nav_estudante"
+        android:id="@+id/nav_lista_estudantes"
         android:name="com.example.ativ27052025_estudantes_retrofitnavdrawer.ui.listaEstudantes.ListaEstudantesFragment"
         android:label="@string/menu_lista_estudantes"
         tools:layout="@layout/fragment_lista_estudantes" >
